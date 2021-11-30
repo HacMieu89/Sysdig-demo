@@ -1,0 +1,6 @@
+rule: Apache writing to non allowed directory1
+condition:  open_write and container and k8s.ns.name=ping and not (ping_allowed_dirs and proc.name in (apache2))
+output:  "Writing to forbidden directory (user=%user.name command=%proc.cmdline file=%fd.name)"
+source: syscall
+description: Attempt to write to directories that should be immutable
+tags: filesystem

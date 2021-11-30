@@ -1,0 +1,6 @@
+rule: Unauthorized process1
+condition: spawned_process and container and k8s.ns.name=ping and not proc.name in (apache2, sh, ping)
+output: Unauthorized process (%proc.cmdline) running in (%container.id)
+source: syscall
+description: There is a running process not described in the base template
+tags: process
