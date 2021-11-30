@@ -1,0 +1,2 @@
+-macro: container
+condition: (container.id != host)
